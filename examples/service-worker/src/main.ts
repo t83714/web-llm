@@ -72,6 +72,7 @@ async function mainNonStreaming() {
  * Chat completion (OpenAI style) with streaming, where delta is sent while generating response.
  */
 async function mainStreaming() {
+
   const initProgressCallback = (report: webllm.InitProgressReport) => {
     setLabel("init-label", report.text);
   };
@@ -113,6 +114,18 @@ async function mainStreaming() {
   }
   console.log("Final message:\n", await engine.getMessage()); // the concatenated message
 }
+
+
+(async()=>{
+  const persistent = await navigator.storage.persist()
+  console.log("Storage persistent: ", persistent);
+  if (persistent) {
+    console.log("Storage will not be cleared except by explicit user action");
+  } else {
+    console.log("Storage may be cleared by the UA under storage pressure.");
+  }
+})();
+
 
 registerServiceWorker();
 // Run one of the function below
