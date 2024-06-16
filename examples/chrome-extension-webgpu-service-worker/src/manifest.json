@@ -16,15 +16,12 @@
     "default_title": "MLCBot",
     "default_popup": "popup.html"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ],
   "background": {
     "service_worker": "background.ts",
     "type": "module"
   },
-  "permissions": ["unlimitedStorage", "tabs", "webNavigation"]
+  "externally_connectable": {
+    "matches": ["<all_urls>"]
+  },
+  "permissions": ["unlimitedStorage"]
 }
